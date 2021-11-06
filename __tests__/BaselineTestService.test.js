@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const BaselineTest = require('../lib/models/BaselineTest');
 const BaselineTestService = require('../lib/services/BaselineTestService');
+const { retireReplicant } = require('../lib/services/BaselineTestService');
 
 jest.mock('twilio', () => () => ({
   messages: {
@@ -18,14 +19,14 @@ describe('Services Tests', () => {
     return await BaselineTest.register(12345678, true);
   });
 
-  // Create Replicant
+  // Create User
   it('Adds a new Replicant to the database', async () => {
     const newUser = await BaselineTestService.createUser(23456789, false);
     const registeredUser = await BaselineTest.getId(newUser.id);
     expect([newUser]).toEqual(registeredUser);
   });
 
-  // UPDATE Replicant
+  // UPDATE User
   it('Updates a Replicant on file', async () => {
     const replicant = await BaselineTest.register(12345678, true);
     const updatedReplicant = await BaselineTestService.updateReplicant(
@@ -40,11 +41,11 @@ describe('Services Tests', () => {
     });
   });
 
-  // // DELETE Order
-  // it('Deletes an order in the DB and sends a confirmation text message', async () => {
-  //   const mockOrder = Order.insert(27);
-  //   return deleteOrder(2).then(() => {
-  //     expect(mockOrder).toBeNull;
-  //   });
-  // });
+  // DELETE User
+  it('Deletes a replicant from the database', async () => {
+    const offBaseline = await BaselineTest.register(12345678, false);
+    return retireReplicant(offBaseline.id).then(() => {
+      expect(offBaseline).toBeNull;
+    });
+  });
 });
