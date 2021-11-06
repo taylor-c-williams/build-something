@@ -18,18 +18,23 @@ describe('Services Tests', () => {
     return await BaselineTest.register(12345678, true);
   });
 
-  // Create User
-  it('Adds a new replicant to the database', async () => {
+  // Create Replicant
+  it('Adds a new Replicant to the database', async () => {
     const newUser = await BaselineTestService.createUser(23456789, false);
     const registeredUser = await BaselineTest.getId(newUser.id);
     expect([newUser]).toEqual(registeredUser);
   });
-  // // UPDATE Order
-  // it('Updates an order in the DB and sends a confirmation text message', async () => {
-  //   const order = await Order.insert(2);
-  //   const updatedOrder = await updateOrder(order.id, 4);
-  //   expect(updatedOrder).toEqual({ id: '2', quantity: 4 });
-  // });
+
+  // UPDATE Replicant
+  it('Updates a Replicant on file', async () => {
+    const replicant = await BaselineTest.register(12345678, true);
+    const updatedReplicant = await BaselineTestService.updateReplicant(
+      12345679,
+      false,
+      replicant.id
+    );
+    expect(updatedReplicant).toEqual({ id: '2', quantity: 4 });
+  });
 
   // // DELETE Order
   // it('Deletes an order in the DB and sends a confirmation text message', async () => {
