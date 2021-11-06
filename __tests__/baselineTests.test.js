@@ -58,14 +58,16 @@ describe('orders.js routes', () => {
       });
   });
 
-  // // GET Order by ID
-  // it('Responds with an order object with the given ID', async () => {
-  //   return await request(app)
-  //     .get('/api/v1/orders/1')
-  //     .then((req) => {
-  //       expect(req.body).toEqual([{ id: '1', quantity: 10 }]);
-  //     });
-  // });
+  // GET user by ID
+  it('Responds with a replicant object with the given ID', async () => {
+    return await request(app)
+      .get('/api/replicants/1')
+      .then((req) => {
+        expect(req.body).toEqual([
+          { id: '1', contact: '10234567', passing: true },
+        ]);
+      });
+  });
 
   // // Patch by ID
   // it('Updates an order in the DB and sends a confirmation text message', async () => {
