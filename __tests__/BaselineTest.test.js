@@ -42,10 +42,8 @@ describe('BaselineTest class tests', () => {
   // UPDATE by ID
   it('updates the status of a registered replicant', async () => {
     const test = await BaselineTest.register(12345678, true);
-    console.log(test, 'bingo');
-    const order = await BaselineTest.update(56789012, false, test.id);
-
-    expect(order).toEqual({ id: '1', quantity: 2 });
+    const update = await BaselineTest.update(56789012, false, test.id);
+    expect(update).toEqual({ contact: '56789012', id: '2', passing: false });
   });
 
   // // Delete by ID
