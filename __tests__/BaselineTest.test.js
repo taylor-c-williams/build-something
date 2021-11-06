@@ -24,9 +24,8 @@ describe('BaselineTest class tests', () => {
 
   // GET by ID
   it('gets one registered replicant by id', async () => {
-    const expected = await BaselineTest.register('15038208075', true);
-    const actual = await BaselineTest.getId(expected.id);
-
+    const expected = await BaselineTest.register(15038208075, true);
+    const actual = await BaselineTest.getId(2);
     expect(actual).toEqual(expect.arrayContaining([expected]));
   });
 
