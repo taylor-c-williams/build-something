@@ -33,19 +33,30 @@ describe('orders.js routes', () => {
       });
   });
 
-  // // GET ALL Orders
-  // it('Responds with an array of all orders', async () => {
-  //   return await request(app)
-  //     .get('/api/v1/orders')
-  //     .then((res) => {
-  //       expect(res.body).toEqual([
-  //         {
-  //           id: '1',
-  //           quantity: 10,
-  //         },
-  //       ]);
-  //     });
-  // });
+  // GET ALL Users
+  it('Responds with an array of all registered replicants', async () => {
+    await request(app)
+      .post('/api/replicants')
+      .send({ contact: '12345678', passing: true });
+    return await request(app)
+      .get('/api/replicants')
+      .then((res) => {
+        expect(res.body).toEqual(
+          expect.arrayContaining([
+            {
+              id: '1',
+              contact: '10234567',
+              passing: true,
+            },
+            {
+              id: '2',
+              contact: '12345678',
+              passing: true,
+            },
+          ])
+        );
+      });
+  });
 
   // // GET Order by ID
   // it('Responds with an order object with the given ID', async () => {
