@@ -83,12 +83,12 @@ describe('orders.js routes', () => {
       });
   });
 
-  // // Deletes by ID
-  // it('Deletes an order in the DB and sends a confirmation text message', async () => {
-  //   return await request(app)
-  //     .delete('/api/v1/orders/1')
-  //     .then((res) => {
-  //       expect(res.status).toEqual(204);
-  //     });
-  // });
+  // Deletes by ID
+  it('Retires a Replicant by ID', async () => {
+    return await request(app)
+      .delete('/api/replicants/1')
+      .then((res) => {
+        expect(res.status).toEqual(204);
+      });
+  });
 });
