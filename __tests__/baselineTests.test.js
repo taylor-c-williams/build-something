@@ -69,18 +69,19 @@ describe('orders.js routes', () => {
       });
   });
 
-  // // Patch by ID
-  // it('Updates an order in the DB and sends a confirmation text message', async () => {
-  //   return await request(app)
-  //     .patch('/api/v1/orders/1')
-  //     .send({ quantity: 100 })
-  //     .then((res) => {
-  //       expect(res.body).toEqual({
-  //         id: '1',
-  //         quantity: 100,
-  //       });
-  //     });
-  // });
+  // Patch by ID
+  it('Updates a replicant file  in the database', async () => {
+    return await request(app)
+      .patch('/api/replicants/1')
+      .send({ contact: '12345678', passing: false })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: '1',
+          contact: '12345678',
+          passing: false,
+        });
+      });
+  });
 
   // // Deletes by ID
   // it('Deletes an order in the DB and sends a confirmation text message', async () => {
