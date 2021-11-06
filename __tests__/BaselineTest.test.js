@@ -39,12 +39,14 @@ describe('BaselineTest class tests', () => {
     expect(replicants).toEqual(expect.arrayContaining([o1, o2, o3]));
   });
 
-  // // UPDATE by ID
-  // it('updates the quantity of an order', async () => {
-  //   const testOrder = await Order.insert(1);
-  //   const order = await Order.update(testOrder.id, 2);
-  //   expect(order).toEqual({ id: '1', quantity: 2 });
-  // });
+  // UPDATE by ID
+  it('updates the status of a registered replicant', async () => {
+    const test = await BaselineTest.register(12345678, true);
+    console.log(test, 'bingo');
+    const order = await BaselineTest.update(56789012, false, test.id);
+
+    expect(order).toEqual({ id: '1', quantity: 2 });
+  });
 
   // // Delete by ID
   // it('returns the deleted order', async () => {
