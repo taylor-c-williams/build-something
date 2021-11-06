@@ -46,11 +46,13 @@ describe('BaselineTest class tests', () => {
     expect(update).toEqual({ contact: '56789012', id: '2', passing: false });
   });
 
-  // // Delete by ID
-  // it('returns the deleted order', async () => {
-  //   const testOrder = await Order.insert(1);
-  //   await Order.delete(testOrder.id);
-  //   const orders = await Order.getAll();
-  //   expect(orders).toEqual([]);
-  // });
+  // Delete by ID
+  it('returns the deleted replicant', async () => {
+    const test = await BaselineTest.register(12345678, false);
+    await BaselineTest.delete(test.id);
+    const replicants = await BaselineTest.getAll();
+    expect(replicants).toEqual(
+      expect.not.objectContaining({ contact: '12345678' })
+    );
+  });
 });
