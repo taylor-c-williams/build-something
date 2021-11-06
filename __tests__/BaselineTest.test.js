@@ -29,15 +29,15 @@ describe('BaselineTest class tests', () => {
     expect(actual).toEqual(expect.arrayContaining([expected]));
   });
 
-  // // GET ALL
-  // it('gets all orders', async () => {
-  //   const o1 = await Order.insert(1);
-  //   const o2 = await Order.insert(2);
-  //   const o3 = await Order.insert(3);
+  // GET ALL
+  it('gets all replicants on file', async () => {
+    const o1 = await BaselineTest.register(12345678, true);
+    const o2 = await BaselineTest.register(23456789, true);
+    const o3 = await BaselineTest.register(34567891, false);
 
-  //   const orders = await Order.getAll();
-  //   expect(orders).toEqual(expect.arrayContaining([o1, o2, o3]));
-  // });
+    const replicants = await BaselineTest.getAll();
+    expect(replicants).toEqual(expect.arrayContaining([o1, o2, o3]));
+  });
 
   // // UPDATE by ID
   // it('updates the quantity of an order', async () => {
