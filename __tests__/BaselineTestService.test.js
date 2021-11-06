@@ -33,7 +33,11 @@ describe('Services Tests', () => {
       false,
       replicant.id
     );
-    expect(updatedReplicant).toEqual({ id: '2', quantity: 4 });
+    expect(updatedReplicant).toEqual({
+      contact: '12345679',
+      id: '2',
+      passing: false,
+    });
   });
 
   // // DELETE Order
