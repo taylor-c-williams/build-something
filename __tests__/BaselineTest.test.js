@@ -1,8 +1,5 @@
 const pool = require('../lib/utils/pool');
-// const twilio = require('twilio');
 const setup = require('../data/setup');
-// const request = require('supertest');
-// const app = require('../lib/app');
 const BaselineTest = require('../lib/models/BaselineTest.js');
 
 jest.mock('twilio', () => () => ({
@@ -12,8 +9,8 @@ jest.mock('twilio', () => () => ({
 }));
 
 describe('BaselineTest class tests', () => {
-  beforeEach(() => {
-    return setup(pool);
+  beforeEach(async () => {
+    return await setup(pool);
   });
   beforeEach(async () => {
     return await BaselineTest.register(
