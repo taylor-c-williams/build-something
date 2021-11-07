@@ -3,8 +3,9 @@ const pool = require('./lib/utils/pool.js');
 const http = require('http');
 const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
+require('dotenv').config();
 
-const PORT = process.env.PORT || 7892;
+const PORT = process.env.PORT || 7890;
 
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
